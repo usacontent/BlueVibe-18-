@@ -3,94 +3,67 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlueVibe - Trending Videos</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BlueVibe - Video Gallery</title>
 
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;
+ margin:0;background:#071329;color:white;
  font-family:Arial,sans-serif;
- background:#071329;
- color:white;
 }
-header{
- background:#0c2450;
- padding:18px;
- text-align:center;
- border-bottom:2px solid #2677e9;
-}
-header h2{margin:0;font-size:25px}
-header p{color:#b9d4ff;font-size:12px}
-
-.page{
- min-height:100vh;
- display:flex;
- justify-content:center;
- align-items:center;
+#home{
+ min-height:100vh;display:flex;
+ justify-content:center;align-items:center;
  padding:20px;
+ background:linear-gradient(145deg,#09285c,#172c78,#25206c);
 }
 .hero{
- width:100%;
- max-width:550px;
- text-align:center;
- padding:45px 25px;
- border-radius:25px;
- background:linear-gradient(145deg,#254c91,#343c91);
- border:1px solid #7898ce;
- box-shadow:0 15px 50px #0007;
+ max-width:530px;width:100%;
+ padding:40px 25px;text-align:center;
+ border-radius:24px;
+ background:#ffffff16;
+ border:1px solid #ffffff44;
 }
 .badge{
- display:inline-block;
- background:#15bd65;
- padding:12px 22px;
- border-radius:30px;
- margin-bottom:20px;
+ display:inline-block;background:#16bd65;
+ padding:12px 20px;border-radius:30px;
 }
-.hero h1{font-size:38px;margin:10px}
-.hero p{
- color:#d6e3ff;
- line-height:1.7;
- font-size:17px;
-}
-button{
- border:0;
- cursor:pointer;
-}
+.hero h1{font-size:38px}
+.hero p{color:#d2e2ff;line-height:1.7}
 .mainbtn{
- display:block;
- width:100%;
- padding:22px;
- margin:30px auto 20px;
- background:#1758e8;
- color:white;
- border-radius:13px;
- font-size:23px;
- font-weight:bold;
+ display:block;width:100%;padding:21px;
+ background:#1858e8;color:white;
+ border:0;border-radius:12px;
+ font-size:23px;font-weight:bold;
+ margin:30px 0;cursor:pointer;
 }
-.mainbtn:hover{background:#2872ff}
-.age{font-size:12px;color:#d1dfff}
+.age{font-size:12px;color:#d3e1ff}
+
+header{
+ background:#0c2450;text-align:center;
+ padding:18px;border-bottom:2px solid #2677e9;
+}
+header h2{margin:0;font-size:25px}
+header p{font-size:12px;color:#b9d4ff}
 
 #galleryPage{display:none}
 .notice{
- margin:15px;
- padding:14px;
- text-align:center;
- background:#102c58;
- border-radius:10px;
- color:#d5e5ff;
- font-size:13px;
+ margin:14px;padding:14px;
+ text-align:center;background:#102c58;
+ border-radius:10px;color:#d5e5ff;
+ font-size:12px;
 }
-.container{
- max-width:1050px;
- margin:auto;
- padding:12px;
-}
+.container{max-width:1050px;margin:auto;padding:12px}
 .heading{
- font-size:19px;
- margin:18px 5px;
- border-left:4px solid #2684ff;
- padding-left:10px;
+ font-size:20px;margin:20px 5px;
+ border-left:4px solid #2684ff;padding-left:10px;
+}
+.back{
+ background:#205eaa;color:white;
+ border:0;padding:14px 22px;
+ border-radius:9px;font-weight:bold;
+ margin:10px 5px;cursor:pointer;
 }
 .grid{
  display:grid;
@@ -98,173 +71,132 @@ button{
  gap:13px;
 }
 .item{
- background:#102447;
- border-radius:12px;
- overflow:hidden;
- border:1px solid #234775;
- text-decoration:none;
- color:white;
+ background:#102447;border:1px solid #234775;
+ border-radius:13px;overflow:hidden;
+ color:white;text-decoration:none;
  display:block;
 }
 .thumb{
- height:145px;
- position:relative;
- display:flex;
- align-items:center;
- justify-content:center;
- overflow:hidden;
+ height:155px;position:relative;
+ overflow:hidden;background:#182e60;
 }
-.thumb:before{
- content:"";
- position:absolute;
- width:150px;
- height:150px;
- border:25px solid #ffffff12;
- border-radius:50%;
+.thumb img{
+ width:100%;height:100%;
+ object-fit:cover;
+ filter:blur(3px);
+ transform:scale(1.08);
+}
+.overlay{
+ position:absolute;inset:0;
+ background:linear-gradient(0deg,#06132b88,transparent);
 }
 .play{
- z-index:1;
- width:48px;
- height:48px;
- background:#ffffffdd;
- color:#1452c8;
- border-radius:50%;
- display:flex;
+ position:absolute;top:50%;left:50%;
+ transform:translate(-50%,-50%);
+ width:52px;height:52px;
+ display:flex;align-items:center;
  justify-content:center;
- align-items:center;
- font-size:23px;
- padding-left:4px;
+ border-radius:50%;
+ background:#ffffffdd;color:#1452c8;
+ font-size:23px;padding-left:4px;
 }
 .tag{
- position:absolute;
- top:9px;
- left:8px;
- background:#ed254e;
- padding:5px 8px;
- border-radius:4px;
- font-size:10px;
+ position:absolute;top:9px;left:8px;
+ background:#ed254e;padding:6px 9px;
+ border-radius:5px;font-size:10px;
  font-weight:bold;
 }
 .duration{
- position:absolute;
- right:8px;
- bottom:8px;
- background:#000b;
- padding:5px 7px;
- font-size:10px;
- border-radius:4px;
+ position:absolute;right:8px;bottom:8px;
+ background:#000b;padding:6px 8px;
+ font-size:10px;border-radius:4px;
 }
-.details{padding:11px}
-.details h3{
- font-size:13px;
- margin:0 0 8px;
-}
-.details p{
- font-size:11px;
- color:#a9c3e8;
- margin:0;
-}
-.sponsored{
- margin-top:10px;
- color:#65a8ff;
- font-size:10px;
- font-weight:bold;
+.details{padding:12px}
+.details h3{font-size:13px;margin:0 0 8px}
+.details p{font-size:11px;color:#a9c3e8;margin:0}
+.open{
+ display:inline-block;margin-top:10px;
+ color:#72b3ff;font-size:11px;font-weight:bold;
 }
 .footer{
- text-align:center;
- padding:30px 10px;
- color:#829bbd;
- font-size:12px;
-}
-.back{
- margin:12px 5px;
- padding:12px 20px;
- border-radius:8px;
- background:#1b55a5;
- color:white;
- font-weight:bold;
+ text-align:center;padding:30px 10px;
+ color:#829bbd;font-size:12px;
 }
 @media(min-width:700px){
- .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
- .thumb{height:175px}
+ .grid{grid-template-columns:repeat(3,1fr)}
+ .thumb{height:190px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- FIRST PAGE -->
+<!-- HOME PAGE -->
 
-<section id="homePage" class="page">
+<section id="home">
+<div class="hero">
 
- <div class="hero">
+<div class="badge">🔥 Trending Worldwide</div>
 
-  <div class="badge">🔥 Trending Worldwide</div>
+<h1>Watch Viral<br>Videos</h1>
 
-  <h1>Watch Viral<br>Videos</h1>
+<p>
+Discover popular entertainment previews.
+Explore our latest featured collection.
+Fast loading and mobile friendly.
+</p>
 
-  <p>
-  Discover today's most popular video previews.
-  Explore trending entertainment content.
-  Fast loading and mobile friendly.
-  </p>
+<button class="mainbtn" onclick="showGallery()">
+▶ WATCH NOW
+</button>
 
-  <button class="mainbtn" onclick="showGallery()">
-  ▶ WATCH NOW
-  </button>
+<p>HD Style • Mobile Friendly • Easy Access</p>
 
-  <div class="small">
-  Mobile Friendly • Easy Access
-  </div>
+<div class="age">18+ ONLY | Adults Only</div>
 
-  <p class="age">
-  18+ ONLY | Adults Only
-  </p>
-
- </div>
-
+</div>
 </section>
 
 
-<!-- SECOND PAGE -->
+<!-- VIDEO GALLERY -->
 
 <section id="galleryPage">
 
 <header>
- <h2>🔵 BLUEVIBE</h2>
- <p>TRENDING ENTERTAINMENT COLLECTION</p>
+<h2>🔵 BLUEVIBE</h2>
+<p>VIDEO ENTERTAINMENT COLLECTION</p>
 </header>
 
 <div class="notice">
-18+ AGE RESTRICTED | External Promotional Preview Links
+18+ AGE RESTRICTED | External Promotional Links
 </div>
 
 <div class="container">
 
- <button class="back" onclick="showHome()">
- ← BACK HOME
- </button>
+<button class="back" onclick="showHome()">
+← BACK HOME
+</button>
 
- <div class="heading">🔥 Trending Previews</div>
+<div class="heading">🔥 Trending Videos</div>
 
- <div class="grid" id="gallery"></div>
+<div class="grid" id="gallery"></div>
 
 </div>
 
 <div class="footer">
 BLUEVIBE © 2026<br>
-External promotional links • Adults only
+Adults Only • External Links
 </div>
 
 </section>
 
 
-<!-- AGE CONFIRMATION -->
+<!-- AGE CHECK -->
 
 <div id="ageModal" style="
 position:fixed;inset:0;background:#000e;
-display:none;align-items:center;justify-content:center;
-padding:20px;z-index:9999">
+display:none;align-items:center;
+justify-content:center;padding:20px;z-index:9999">
 
 <div style="
 background:#102c58;padding:30px;
@@ -272,19 +204,20 @@ border-radius:18px;text-align:center;
 max-width:350px;width:100%">
 
 <h2>18+ AGE CHECK</h2>
-
-<p>Please confirm that you are 18 years old or older.</p>
+<p>Are you 18 years old or older?</p>
 
 <button onclick="confirmAge()" style="
 background:#1764ee;color:white;
-padding:13px 25px;border-radius:8px;
-font-weight:bold">I AM 18+</button>
+padding:14px 25px;border:0;
+border-radius:8px;font-weight:bold">
+YES, I AM 18+
+</button>
 
 <br><br>
 
 <button onclick="showHome()" style="
 background:#35435c;color:white;
-padding:11px 20px;border-radius:8px">
+padding:12px 20px;border:0;border-radius:8px">
 GO BACK
 </button>
 
@@ -294,10 +227,9 @@ GO BACK
 
 <script>
 
-/* YOUR 12 SMARTLINKS */
+/* 12 SMARTLINKS */
 
-const links = [
-
+const links=[
 "https://asiafilm.org/4/5872a97cbdcb63d702f41bd2e431ec9f",
 "https://uplcm.com/4/9449357",
 
@@ -315,38 +247,36 @@ const links = [
 
 "https://auctionr.org/4/4ef3367ca5ebd81201e651ebed15de54",
 "https://uplcm.com/4/12285776"
-
 ];
 
 
-/* CREATE 24 CARDS */
+/* CREATE 24 VIDEO CARDS */
 
 const gallery=document.getElementById("gallery");
 
 for(let i=0;i<24;i++){
 
- const url=links[i%12];
-
- const adType=i%2===0
- ? "Adsterra"
- : "Monetag";
-
  const a=document.createElement("a");
 
  a.className="item";
- a.href=url;
+ a.href=links[i%12];
  a.target="_blank";
  a.rel="nofollow sponsored noopener";
 
+ const photoNumber=(i%80)+1;
+
+ const photo=
+ `https://randomuser.me/api/portraits/women/${photoNumber}.jpg`;
+
  a.innerHTML=`
 
- <div class="thumb" style="
- background:linear-gradient(
- ${120+i*15}deg,
- hsl(${215+i*5},70%,25%),
- hsl(${245+i*4},65%,40%),
- hsl(${270+i*3},55%,22%)
- )">
+ <div class="thumb">
+
+ <img src="${photo}"
+ loading="lazy"
+ alt="Blurred portrait preview">
+
+ <div class="overlay"></div>
 
  <span class="tag">18+ PREVIEW</span>
 
@@ -362,9 +292,7 @@ for(let i=0;i<24;i++){
 
  <p>Featured Entertainment Preview</p>
 
- <div class="sponsored">
- ↗ ${adType} Sponsored Link
- </div>
+ <span class="open">▶ OPEN PREVIEW</span>
 
  </div>
  `;
@@ -374,24 +302,21 @@ for(let i=0;i<24;i++){
 }
 
 
-/* PAGE NAVIGATION */
+/* PAGE FUNCTIONS */
 
 function showGallery(){
-
  document.getElementById("ageModal").style.display="flex";
-
 }
 
 function confirmAge(){
 
  document.getElementById("ageModal").style.display="none";
 
- document.getElementById("homePage").style.display="none";
+ document.getElementById("home").style.display="none";
 
  document.getElementById("galleryPage").style.display="block";
 
  window.scrollTo(0,0);
-
 }
 
 function showHome(){
@@ -400,10 +325,9 @@ function showHome(){
 
  document.getElementById("galleryPage").style.display="none";
 
- document.getElementById("homePage").style.display="flex";
+ document.getElementById("home").style.display="flex";
 
  window.scrollTo(0,0);
-
 }
 
 </script>
